@@ -1,31 +1,8 @@
-// package: 
+// package: restaurants
 // file: src/proto/restaurants.proto
 
 import * as jspb from "google-protobuf";
-
-export class Currency extends jspb.Message {
-  getName(): string;
-  setName(value: string): void;
-
-  getSymbol(): string;
-  setSymbol(value: string): void;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): Currency.AsObject;
-  static toObject(includeInstance: boolean, msg: Currency): Currency.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: Currency, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): Currency;
-  static deserializeBinaryFromReader(message: Currency, reader: jspb.BinaryReader): Currency;
-}
-
-export namespace Currency {
-  export type AsObject = {
-    name: string,
-    symbol: string,
-  }
-}
+import * as src_proto_tax_pb from "./tax_pb";
 
 export class Payment extends jspb.Message {
   getGstin(): string;
@@ -118,6 +95,30 @@ export namespace Timings {
   export type AsObject = {
     day: DaysMap[keyof DaysMap],
     slotsList: Array<Slots.AsObject>,
+  }
+}
+
+export class Currency extends jspb.Message {
+  getName(): string;
+  setName(value: string): void;
+
+  getSymbol(): string;
+  setSymbol(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): Currency.AsObject;
+  static toObject(includeInstance: boolean, msg: Currency): Currency.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: Currency, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): Currency;
+  static deserializeBinaryFromReader(message: Currency, reader: jspb.BinaryReader): Currency;
+}
+
+export namespace Currency {
+  export type AsObject = {
+    name: string,
+    symbol: string,
   }
 }
 
@@ -219,6 +220,11 @@ export class Restaurant extends jspb.Message {
   getActive(): boolean;
   setActive(value: boolean): void;
 
+  clearTaxesList(): void;
+  getTaxesList(): Array<src_proto_tax_pb.Tax>;
+  setTaxesList(value: Array<src_proto_tax_pb.Tax>): void;
+  addTaxes(value?: src_proto_tax_pb.Tax, index?: number): src_proto_tax_pb.Tax;
+
   clearPaymentModeList(): void;
   getPaymentModeList(): Array<PaymentModesMap[keyof PaymentModesMap]>;
   setPaymentModeList(value: Array<PaymentModesMap[keyof PaymentModesMap]>): void;
@@ -231,6 +237,9 @@ export class Restaurant extends jspb.Message {
 
   getSubscriptionPlan(): SubscriptionPlanMap[keyof SubscriptionPlanMap];
   setSubscriptionPlan(value: SubscriptionPlanMap[keyof SubscriptionPlanMap]): void;
+
+  getSubscriptionPrice(): number;
+  setSubscriptionPrice(value: number): void;
 
   getDefaultCurrenyId(): string;
   setDefaultCurrenyId(value: string): void;
@@ -266,9 +275,11 @@ export namespace Restaurant {
     imagesList: Array<string>,
     fcmTokensList: Array<string>,
     active: boolean,
+    taxesList: Array<src_proto_tax_pb.Tax.AsObject>,
     paymentModeList: Array<PaymentModesMap[keyof PaymentModesMap]>,
     timingsList: Array<Timings.AsObject>,
     subscriptionPlan: SubscriptionPlanMap[keyof SubscriptionPlanMap],
+    subscriptionPrice: number,
     defaultCurrenyId: string,
     assignedSalesEmpId: string,
     assignedOpsEmpId: string,

@@ -5,8 +5,9 @@ package items
 
 import (
 	fmt "fmt"
-	proto "github.com/golang/protobuf/proto"
 	math "math"
+
+	proto "github.com/golang/protobuf/proto"
 )
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -206,7 +207,9 @@ func init() {
 	proto.RegisterType((*Addon)(nil), "items.Addon")
 }
 
-func init() { proto.RegisterFile("src/proto/addons.proto", fileDescriptor_eb639fddc2c11a75) }
+func init() {
+	proto.RegisterFile("src/proto/addons.proto", fileDescriptor_eb639fddc2c11a75)
+}
 
 var fileDescriptor_eb639fddc2c11a75 = []byte{
 	// 289 bytes of a gzipped FileDescriptorProto

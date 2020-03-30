@@ -1,6 +1,8 @@
 syntax = "proto3";
 
-package restaurant;
+package restaurants;
+
+import "src/proto/tax.proto";
 
 enum SubscriptionPlan {
     MONTHLY = 0;
@@ -24,12 +26,6 @@ enum Days {
     FRIDAY = 4;
     SATURDAY = 5;
     SUNDAY = 6;
-}
-enum OrderType {
-    DINEIN = 0;
-    TAKEAWAY = 1;
-    AGGREGATORS = 2;
-    QSR = 3;
 }
 
 message Payment {
@@ -57,13 +53,6 @@ message Currency {
     string symbol = 2;
 }
 
-message Tax {
-    string _id = 1;
-    string name = 2;
-    bool inclusice = 3;
-    bool is_percentage = 4;
-    float value = 5;
-}
 
 message Address {
 

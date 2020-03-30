@@ -2,6 +2,7 @@
 // file: src/proto/items.proto
 
 import * as jspb from "google-protobuf";
+import * as src_proto_addons_pb from "./addons_pb";
 
 export class Items extends jspb.Message {
   getId(): string;
@@ -60,6 +61,11 @@ export class Items extends jspb.Message {
   getVeg(): boolean;
   setVeg(value: boolean): void;
 
+  clearAddonsList(): void;
+  getAddonsList(): Array<src_proto_addons_pb.Addon>;
+  setAddonsList(value: Array<src_proto_addons_pb.Addon>): void;
+  addAddons(value?: src_proto_addons_pb.Addon, index?: number): src_proto_addons_pb.Addon;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Items.AsObject;
   static toObject(includeInstance: boolean, msg: Items): Items.AsObject;
@@ -88,6 +94,7 @@ export namespace Items {
     priority: number,
     available: boolean,
     veg: boolean,
+    addonsList: Array<src_proto_addons_pb.Addon.AsObject>,
   }
 }
 
