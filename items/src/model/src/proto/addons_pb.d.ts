@@ -1,5 +1,5 @@
 // package: items
-// file: src/proto/Addons.proto
+// file: src/proto/addons.proto
 
 import * as jspb from "google-protobuf";
 

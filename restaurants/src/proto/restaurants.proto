@@ -2,9 +2,6 @@ syntax = "proto3";
 
 package restaurant;
 
-// import "google/protobuf/timestamp.proto";
-
-
 enum SubscriptionPlan {
     MONTHLY = 0;
     QUATERLY = 1;

@@ -1,8 +1,6 @@
 syntax = "proto3";
 
 package items;
-option go_package = "proto";
-
 
 enum Type {
     CHECKBOX = 0;

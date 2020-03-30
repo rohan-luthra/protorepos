@@ -1,10 +1,6 @@
 syntax = "proto3";
 
 package items;
-option go_package = "proto";
-
-
-// import "google/protobuf/timestamp.proto";
 
 enum Timings {
     BREAKFAST = 0;
@@ -36,5 +32,6 @@ message Items {
     int32 priority = 14;
     bool available = 15;
     bool veg = 16;
+    repeated items.src.proto.Addons addons = 17;
     
 }
