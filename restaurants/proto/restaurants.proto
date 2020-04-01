@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package restaurants;
 
-import "src/proto/tax.proto";
+import "proto/tax.proto";
 
 enum SubscriptionPlan {
     MONTHLY = 0;
@@ -29,13 +29,13 @@ enum Days {
 }
 
 message Payment {
-    string GSTIN = 1;
-    string PAN = 2;
-    string UPI = 3;
+    string gstin = 1;
+    string pan = 2;
+    string upi = 3;
     string bank_name = 4;
     string account_name = 5;
     string account_number = 6;
-    string IFSC = 7;
+    string ifsc = 7;
 }
 
 message Slots{

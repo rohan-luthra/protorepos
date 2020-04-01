@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package items;
+
+import "proto/items.proto";
+
+message AddItemReq {
+    Items item = 1;
+}
+
+message AddItemRes {
+    Items item = 1;
+}   
+
+service ItemsService {
+
+    rpc AddItem (AddItemReq) returns (AddItemRes);
+}

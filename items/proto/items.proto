@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package items;
 
-import "src/proto/addons.proto";
+import "proto/addons.proto";
 
 enum Timings {
     BREAKFAST = 0;
