@@ -1,8 +1,10 @@
 syntax = "proto3";
 
-package items;
+package item;
 
-import "proto/addons.proto";
+import "proto/addon.proto";
+import "google/protobuf/timestamp.proto";
+
 
 enum Timings {
     BREAKFAST = 0;
@@ -15,7 +17,7 @@ enum SpecialCategory{
     TODAYS_SPECIAL = 1;
 }
 
-message Items {
+message Item {
 
     // TODO: add multiple language to name & description
     string _id = 1; // mongo Objectid 
@@ -35,5 +37,12 @@ message Items {
     bool available = 15;
     bool veg = 16;
     repeated Addon addons = 17;
+
+    google.protobuf.Timestamp created_at = 18;
+    google.protobuf.Timestamp updated_at = 19;
     
+}
+
+message Items {
+    repeated Item items = 1;
 }

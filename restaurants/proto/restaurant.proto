@@ -3,6 +3,7 @@ syntax = "proto3";
 package restaurants;
 
 import "proto/tax.proto";
+import "google/protobuf/timestamp.proto";
 
 enum SubscriptionPlan {
     MONTHLY = 0;
@@ -96,7 +97,7 @@ message Restaurant {
     string assigned_ops_emp_id = 21; // mongo Objectid
 
 
-    // google.protobuf.Timestamp created_at = 20;
-    // google.protobuf.Timestamp updated_at = 21;
+    google.protobuf.Timestamp created_at = 22;
+    google.protobuf.Timestamp updated_at = 23;
 
 }

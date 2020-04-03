@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package items;
+package item;
 
 enum Type {
     CHECKBOX = 0;
@@ -25,7 +25,7 @@ message Addon {
     string name = 2;
     string description = 3;
     string rest_id = 4; // mongo id (foreign key Restaurant - _id)
-    repeated AddonItem addon_items = 5;
+    repeated AddonItem addon_item = 5;
     Type __type = 6;
 
 }

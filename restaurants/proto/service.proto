@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package restaurant;
+
+import "proto/restaurant.proto";
+
+message Empty {
+}
+
+message Id {
+    string id = 1;
+}
+
+service RestaurantService {
+
+    rpc AddRestaurant (Restaurant) returns (Id);
+    rpc GetRestaurant (Id) returns (Restaurant);
+    rpc GetRestaurants (Empty) returns (Restaurants);
+    rpc UpdateRestaurant (Restaurant) returns (Restaurant);
+    rpc DeleteRestaurant (Id) returns (Id);
+}

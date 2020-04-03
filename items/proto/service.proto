@@ -1,18 +1,23 @@
 syntax = "proto3";
 
-package items;
+package item;
 
-import "proto/items.proto";
+import "proto/item.proto";
 
-message AddItemReq {
-    Items item = 1;
+
+message Id {
+    string id = 1;
+}
+message RestId {
+    string id = 1;
 }
 
-message AddItemRes {
-    Items item = 1;
-}   
 
-service ItemsService {
+service ItemService {
 
-    rpc AddItem (AddItemReq) returns (AddItemRes);
+    rpc AddItem (Item) returns (Id);
+    rpc GetItem (Id) returns (Item);
+    rpc GetRestItems (RestId) returns (Items);
+    rpc UpdateItem (Item) returns (Item);
+    rpc DeleteItem (Id) returns (Id);
 }
