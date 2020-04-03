@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package restaurants;
+package restaurant;
 
 enum OrderType {
     DINEIN = 0;

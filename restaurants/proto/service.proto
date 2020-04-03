@@ -4,8 +4,7 @@ package restaurant;
 
 import "proto/restaurant.proto";
 
-message Empty {
-}
+message Empty {}
 
 message Id {
     string id = 1;

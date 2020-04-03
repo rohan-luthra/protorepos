@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package restaurants;
+package restaurant;
 
 import "proto/tax.proto";
 import "google/protobuf/timestamp.proto";
@@ -100,4 +100,8 @@ message Restaurant {
     google.protobuf.Timestamp created_at = 22;
     google.protobuf.Timestamp updated_at = 23;
 
+}
+
+message Restaurants {
+    repeated Restaurant restaurant = 1;
 }
