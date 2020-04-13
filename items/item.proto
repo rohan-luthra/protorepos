@@ -1,0 +1,88 @@
+syntax = "proto3";
+
+package item;
+
+import "google/protobuf/timestamp.proto";
+
+enum Type {
+    CHECKBOX = 0;
+    RADIO_BUTTON = 1;
+    SLIDER = 2;
+}
+
+message AddonItem {
+    // TODO: add multiple language to name & description
+    string id = 1;
+    string name = 2;
+    float price = 3;
+    bool available = 4;
+    string description = 5;
+
+}
+
+message Addon {
+
+    // TODO: add multiple language to name & description
+    string id = 1; // mongo id
+    string name = 2;
+    string description = 3;
+    string rest_id = 4; // mongo id (foreign key Restaurant - _id)
+    repeated AddonItem addon_item = 5;
+    Type __type = 6;
+
+}
+
+
+enum Timings {
+    BREAKFAST = 0;
+    LUNCH = 1;
+    SNACKS = 2;
+    DINNER = 3;
+}
+enum SpecialCategory{
+    CHEFS_SPECIAL = 0;
+    TODAYS_SPECIAL = 1;
+}
+
+message Item {
+
+    // TODO: add multiple language to name & description
+    string id = 1; // mongo Objectid 
+    string name = 2;
+    string description = 3;
+    float price = 4;
+    float ratings = 5;
+    int32 ratings_count = 6;
+    int32 order_count = 7;
+    string category_id = 8; // mongo ObjectId ( fkey Categories - _id )
+    string sub_category_id = 9; // mongo ObjectId ( fkey Categories - _id )
+    repeated SpecialCategory spl_categories = 10;
+    repeated string tags = 11;
+    repeated string images = 12;
+    repeated Timings timings = 13;
+    int32 priority = 14;
+    bool available = 15;
+    bool veg = 16;
+    repeated Addon addons = 17;
+    string rest_id = 18;
+
+    google.protobuf.Timestamp created_at = 19;
+    google.protobuf.Timestamp updated_at = 20;
+    
+}
+
+message Id {
+    string id = 1;
+}
+message RestId {
+    string id = 1;
+}
+
+service ItemService {
+
+    rpc AddItem (Item) returns (Id);
+    rpc GetItem (Id) returns (Item);
+    rpc GetRestItems (RestId) returns (stream Item);
+    rpc UpdateItem (Item) returns (Item);
+    rpc DeleteItem (Id) returns (Id);
+}

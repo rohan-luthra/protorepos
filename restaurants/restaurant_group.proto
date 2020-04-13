@@ -1,0 +1,65 @@
+syntax = "proto3";
+
+package restaurant;
+
+import "google/protobuf/timestamp.proto";
+
+import "basic.proto";
+import "restaurant.proto";
+
+enum RestaurantGroupType {
+    MALL=0;
+    FRANCHISE=1;
+}
+
+message RestaurantGroup {
+
+    string id = 1; //mongoDb Id
+    string username = 2;
+    string hasword = 3;
+    int32 hashword_salt = 4;
+    message Contact {
+        string phone_number = 1;
+        string email = 2;
+        string name = 3;
+    }
+    repeated Contact contacts = 5;
+    string person_of_contact = 6;
+    repeated RestId restaurants = 7;
+
+    google.protobuf.Timestamp created_at = 8;
+    google.protobuf.Timestamp updated_at = 9;
+}
+
+service RestaurantGroupService {
+
+    /**
+        Add new RestaurantGroup
+        @required: salesJwt/adminJWT
+     */
+    rpc AddRestaurantGroup (RestaurantGroup) returns (Id);
+
+    /**
+        Update a RestaurantGroup
+        @required: restGroupJWT/salesJwt
+     */
+    rpc UpdateRestaurantGroup (RestaurantGroup) returns (Id);
+
+    /**
+        Get RestaurantGroup
+        @required: restGroupJWT/salesJwt/opsJWT/supportJwt/adminJWT
+     */
+    rpc GetRestaurantGroup (Id) returns (RestaurantGroup);
+
+    /**
+        Get all RestaurantGroup
+        @required: restGroupJWT/salesJwt/opsJWT/supportJwt/adminJWT
+     */
+    rpc GetRestaurantGroups (Empty) returns (stream RestaurantGroup);
+
+    /**
+        Get all Restaurant for RestaurantGroup
+        @required: restGroupJWT/salesJwt/opsJWT/supportJwt/adminJWT
+     */
+    rpc GetRestaurantGroupRestaurant (Id) returns (stream Restaurant);
+}

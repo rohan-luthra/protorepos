@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+package restaurant;
+
+message Empty {}
+
+message Name {
+    string en = 1;
+    string ja = 2;
+}
+
+message Description {
+    string en = 1;
+    string ja = 2;
+}
+
+message Id {
+    string id = 1;
+}
+message RestId {
+    string rest_id = 1; 
+}
+message RestGroupId {
+    string rest_group_id = 1;
+}
+message TaxId {
+    string tax_id = 1;
+}
+message CurrencyId {
+    string currency_id = 1;
+}

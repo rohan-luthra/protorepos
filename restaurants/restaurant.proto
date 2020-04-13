@@ -1,0 +1,172 @@
+syntax = "proto3";
+
+package restaurant;
+
+import "google/protobuf/timestamp.proto";
+import "basic.proto";
+import "currency.proto";
+
+enum SubscriptionPlan {
+    MONTHLY = 0;
+    QUATERLY = 1;
+    HALF_YEARLY = 2;
+    YEARLY = 3;
+}
+
+enum PaymentModes {
+    CASH = 0;
+    CARD = 1;
+    ONLINE = 2;
+    WALLET = 3;
+}
+
+enum Days {
+    MONDAY = 0;
+    TUESDAY = 1;
+    WEDNESDAY = 2;
+    THURSDAY = 3;
+    FRIDAY = 4;
+    SATURDAY = 5;
+    SUNDAY = 6;
+}
+
+message Payment {
+    string gstin = 1;
+    string pan = 2;
+    string upi = 3;
+    string bank_name = 4;
+    string account_name = 5;
+    string account_number = 6;
+    string ifsc = 7;
+}
+
+message Slots{
+    string start_time = 1; // 0000 - 2400 hrs 
+    string end_time = 2; // 0000 - 2400 hrs 
+}
+
+message Timings {
+    Days day = 1;
+    repeated Slots slots = 2;
+}
+
+message Address {
+
+    string line1 = 1;
+    string line2 = 2;
+    string city = 3;
+    string state = 4;
+    string country = 5;
+    int32 pincode = 6;
+    float geo_latitude = 7;
+    float geo_longitude = 8;
+    string timezone = 9;
+}
+
+message Restaurant {
+    
+    string id = 1; // mongo Objectid
+    Name name = 2;
+    string username = 3;
+    string hashword = 4;
+    int32 hashword_salt = 5;
+    message Contact {
+        string phone_number = 1;
+        string email = 2;
+        string name = 3;
+    }
+    Contact contact = 7;
+    string person_of_contact = 8;
+    string logo = 9;
+    string profile_image = 10;
+    bool active = 11;
+    Address address = 12;
+    repeated string images = 13;
+    repeated string fcm_tokens = 14;
+    repeated PaymentModes payment_mode = 15;
+    repeated Timings timings = 16;
+    SubscriptionPlan subscription_plan = 17;
+    float subscription_price = 18;
+
+    Currency curreny = 20; // mongo Objectid
+    string assigned_sales_emp_id = 21; // mongo Objectid
+    string assigned_ops_emp_id = 22; // mongo Objectid
+    float trial_days = 23;
+
+    google.protobuf.Timestamp created_at = 24;
+    google.protobuf.Timestamp updated_at = 25;
+
+}
+
+
+message AddRestaurantReq {
+
+    Name name = 1;
+    string username = 2;
+    string password = 3;
+    string contact_number = 4;
+    string person_of_contact = 5;
+    string logo = 6;
+    string profile_image = 7;
+    bool active = 8;
+    Address address = 9;
+    repeated PaymentModes payment_mode = 10;
+    repeated Timings timings = 11;
+    SubscriptionPlan subscription_plan = 12;
+    float subscription_price = 13;
+    string default_curreny_id = 20;
+}
+
+
+/*
+    Restaurant Service
+*/
+
+service RestaurantService {
+    /**
+        Add new Restaurant
+        @required: salesJwt
+     */
+    rpc AddRestaurant (Restaurant) returns (Id);
+
+    /**
+        Get a Restaurant 
+     */
+    rpc GetRestaurant (Id) returns (Restaurant);
+
+    /**
+        Get all Restaurant 
+     */
+    rpc GetRestaurants (Empty) returns (stream Restaurant);
+
+    /**
+        Update a Restaurant 
+        @required: restJWT
+     */
+    rpc UpdateRestaurant (Restaurant) returns (Id);
+
+    /**
+        Delete a Restaurant 
+        @required: salesJwt
+     */
+    rpc DeleteRestaurant (Id) returns (Id);
+
+    /**
+        Get new Restaurant Group
+        @required: restJWT
+     */
+    //  rpc GetSalesReport (GetSalesReportReq) returns (GetSalesReportRes);
+
+     /**
+        Get new Restaurant Group
+        @required: restJWT
+     */
+    //  rpc GetOrderSummary (GetOrderSummaryReq) returns (GetOrderSummaryRes);
+
+     /**
+        Get new Restaurant Group
+        @required: restJWT
+     */
+    //  rpc GetAnalysis (GetAnalysisReq) returns (GetAnalysisRes);
+
+}
