@@ -13,7 +13,7 @@ enum SubscriptionPlan {
     YEARLY = 3;
 }
 
-enum PaymentModes {
+enum PaymentMode {
     CASH = 0;
     CARD = 1;
     ONLINE = 2;
@@ -40,14 +40,14 @@ message Payment {
     string ifsc = 7;
 }
 
-message Slots{
+message Slot{
     string start_time = 1; // 00:00:00 - 24:00:00 hrs 
     string end_time = 2; // 00:00:00 - 24:00:00 hrs 
 }
 
 message Timings {
     Days day = 1;
-    repeated Slots slots = 2;
+    repeated Slot slots = 2;
 }
 
 message Address {
@@ -55,12 +55,14 @@ message Address {
     string line1 = 1;
     string line2 = 2;
     string city = 3;
-    string state = 4;
-    string country = 5;
-    int32 pincode = 6;
-    float geo_latitude = 7;
-    float geo_longitude = 8;
-    string timezone = 9;
+    string city_id = 4;
+    string state = 5;
+    string country = 6;
+    string country_id = 7;
+    int32 pincode = 8;
+    float geo_latitude = 9;
+    float geo_longitude = 10;
+    string timezone = 11;
 }
 
 message Restaurant {
@@ -83,7 +85,7 @@ message Restaurant {
     Address address = 12;
     repeated string images = 13;
     repeated string fcm_tokens = 14;
-    repeated PaymentModes payment_mode = 15;
+    repeated PaymentMode payment_modes = 15;
     repeated Timings timings = 16;
     SubscriptionPlan subscription_plan = 17;
     float subscription_price = 18;
@@ -110,7 +112,7 @@ message AddRestaurantReq {
     string profile_image = 7;
     bool active = 8;
     Address address = 9;
-    repeated PaymentModes payment_mode = 10;
+    repeated PaymentMode payment_modes = 10;
     repeated Timings timings = 11;
     SubscriptionPlan subscription_plan = 12;
     float subscription_price = 13;
