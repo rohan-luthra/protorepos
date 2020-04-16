@@ -41,8 +41,8 @@ message Payment {
 }
 
 message Slots{
-    string start_time = 1; // 0000 - 2400 hrs 
-    string end_time = 2; // 0000 - 2400 hrs 
+    string start_time = 1; // 00:00:00 - 24:00:00 hrs 
+    string end_time = 2; // 00:00:00 - 24:00:00 hrs 
 }
 
 message Timings {
@@ -75,7 +75,7 @@ message Restaurant {
         string email = 2;
         string name = 3;
     }
-    Contact contact = 7;
+    repeated Contact contacts = 7;
     string person_of_contact = 8;
     string logo = 9;
     string profile_image = 10;
@@ -123,50 +123,14 @@ message AddRestaurantReq {
 */
 
 service RestaurantService {
-    /**
-        Add new Restaurant
-        @required: salesJwt
-     */
-    rpc AddRestaurant (Restaurant) returns (Id);
-
-    /**
-        Get a Restaurant 
-     */
+    rpc AddRestaurant (AddRestaurantReq) returns (Id);
     rpc GetRestaurant (Id) returns (Restaurant);
-
-    /**
-        Get all Restaurant 
-     */
     rpc GetRestaurants (Empty) returns (stream Restaurant);
-
-    /**
-        Update a Restaurant 
-        @required: restJWT
-     */
     rpc UpdateRestaurant (Restaurant) returns (Id);
-
-    /**
-        Delete a Restaurant 
-        @required: salesJwt
-     */
     rpc DeleteRestaurant (Id) returns (Id);
 
-    /**
-        Get new Restaurant Group
-        @required: restJWT
-     */
     //  rpc GetSalesReport (GetSalesReportReq) returns (GetSalesReportRes);
-
-     /**
-        Get new Restaurant Group
-        @required: restJWT
-     */
     //  rpc GetOrderSummary (GetOrderSummaryReq) returns (GetOrderSummaryRes);
-
-     /**
-        Get new Restaurant Group
-        @required: restJWT
-     */
     //  rpc GetAnalysis (GetAnalysisReq) returns (GetAnalysisRes);
 
 }
