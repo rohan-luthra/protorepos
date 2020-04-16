@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package restaurant;
+
+import "google/protobuf/timestamp.proto";
+import "basic.proto";
+
+message Currency {
+    string id = 1 ; 
+    string name = 2;
+    string symbol = 3;
+
+    google.protobuf.Timestamp created_at = 4;
+    google.protobuf.Timestamp updated_at = 5;
+}
+
+service CurrencyService {
+    rpc AddCurrency (Currency) returns (Id);
+    rpc UpdateCurrency (Currency) returns (Id);
+    rpc RemoveCurrency (Id) returns (Id);
+    rpc GetCurrencies (Empty) returns (stream Currency);
+}

@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+package restaurant;
+
+import "google/protobuf/timestamp.proto";
+import "basic.proto";
+
+
+enum OrderType {
+    DINEIN = 0;
+    TAKEAWAY = 1;
+    AGGREGATORS = 2;
+    QSR = 3;
+}
+
+message Tax {
+    string id = 1;
+    string rest_id = 2;
+    Name name = 3;
+    bool inclusive = 4;
+    bool is_percentage = 5;
+    float value = 6;
+    repeated OrderType order_types = 7;
+    google.protobuf.Timestamp created_at = 8;
+    google.protobuf.Timestamp updated_at = 9;
+}
+
+service TaxService {
+    
+    rpc AddTax (Tax) returns (Id);
+    rpc UpdateTax (Tax) returns (Tax);
+    rpc GetTax (TaxId) returns (Tax);
+    rpc GetRestTax (RestId) returns (stream Tax);
+    rpc DeleteTax (Id) returns (TaxId);
+
+}

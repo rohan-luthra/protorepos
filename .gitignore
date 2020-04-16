@@ -3,8 +3,8 @@ repos
 token.txt
 generate.sh
 
-restaurants/currency.proto
-restaurants/tax.proto
+# restaurants/currency.proto
+# restaurants/tax.proto
 
 items/category.proto
 items/sub_category.proto
