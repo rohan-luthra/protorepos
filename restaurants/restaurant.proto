@@ -2,9 +2,10 @@ syntax = "proto3";
 
 package restaurant;
 
-import "google/protobuf/timestamp.proto";
 import "basic.proto";
-import "currency.proto";
+import "restaurant.proto";
+import "google/protobuf/timestamp.proto";
+
 
 enum SubscriptionPlan {
     MONTHLY = 0;
